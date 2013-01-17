@@ -1,10 +1,14 @@
 require File.expand_path(File.dirname(__FILE__) + '/edgecase')
 
 class AboutSymbols < EdgeCase::Koan
+
+  # So here's a symbol. Is it a Symbol? Yes.
+ 
   def test_symbols_are_symbols
     symbol = :ruby
     assert_equal true, symbol.is_a?(Symbol)
   end
+
 
   def test_symbols_can_be_compared
     symbol1 = :a_symbol
@@ -13,6 +17,10 @@ class AboutSymbols < EdgeCase::Koan
 
     assert_equal true, symbol1 == symbol2
     assert_equal false, symbol1 == symbol3
+
+    # "Just because you're accepted doesn't mean you belong."
+    # -- tagline from "School Ties" (1992)
+
   end
 
   def test_identical_symbols_are_a_single_internal_object
@@ -21,17 +29,30 @@ class AboutSymbols < EdgeCase::Koan
 
     assert_equal true, symbol1           == symbol2
     assert_equal true, symbol1.object_id == symbol2.object_id
+
+    # This may seem like the trippiest concept in all of Ruby, but it's simple:
+    #
+    # A symbol is a symbol. Only one must exist in the universe.
+    #
+    # Symbols, like stars, are unique entities in the firmament. They are kept in the "symbol table,"
+    # which you can reach by going to Symbol.all_symbols
+
   end
 
   def test_method_names_become_symbols
+
+    # This here .map enumerator allows us to make a Ruby Block allowing us to run through that grand table of symbols.
+
     symbols_as_strings = Symbol.all_symbols.map { |x| x.to_s }
     assert_equal true, symbols_as_strings.include?("test_method_names_become_symbols")
   end
 
   # THINK ABOUT IT:
   #
-  # Why do we convert the list of symbols to strings and then compare
+  # Q: Why do we convert the list of symbols to strings and then compare
   # against the string value rather than against symbols?
+
+  # A: Because of something like the Observer Effect. By talking about that symbol, you create it.
 
   in_ruby_version("mri") do
     RubyConstant = "What is the sound of one hand clapping?"
