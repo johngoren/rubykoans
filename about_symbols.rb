@@ -90,9 +90,10 @@ class AboutSymbols < EdgeCase::Koan
   #
   # Q: In the above, why the weird, symbol-like :"cats and dogs" syntax...before becoming a symbol? What can it all mean?
   # A: This is a special method for creating symbols whose names contain spaces.
-  # :'Benedict Cumberbatch'
+  # i.e. :'Benedict Cumberbatch'
 
 
+  # You interpolate a symbol, you turn it into a string
 
   def test_to_s_is_called_on_interpolated_symbols
     symbol = :cats
@@ -101,11 +102,15 @@ class AboutSymbols < EdgeCase::Koan
     assert_equal "It is raining cats and dogs.", string
   end
 
+  # You shouldn't compare a symbol to a string
+
   def test_symbols_are_not_strings
     symbol = :ruby
     assert_equal false, symbol.is_a?(String)
     assert_equal false, symbol.eql?("ruby")
   end
+
+  # In this exercise we send messages to the symbol, then watch as they are rejected.
 
   def test_symbols_do_not_have_string_methods
     symbol = :not_a_string
@@ -132,5 +137,8 @@ class AboutSymbols < EdgeCase::Koan
 
   # THINK ABOUT IT:
   #
-  # Why is it not a good idea to dynamically create a lot of symbols?
+  # Q: Why is it not a good idea to dynamically create a lot of symbols?
+  #
+  # A: Conservation of memory. When you reserve RAM for a symbol, you don't get it back until the program ends.
+  
 end
