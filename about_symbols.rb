@@ -63,10 +63,14 @@ class AboutSymbols < EdgeCase::Koan
     end
   end
 
+  # So it turns out a symbol is equal to itself as a string.
+
   def test_symbols_can_be_made_from_strings
     string = "catsAndDogs"
     assert_equal :"catsAndDogs", string.to_sym
   end
+
+  # Unlike filenames from MS-DOS...
 
   def test_symbols_with_spaces_can_be_built
     symbol = :"cats and dogs"
@@ -80,6 +84,15 @@ class AboutSymbols < EdgeCase::Koan
 
     assert_equal symbol, :"cats and dogs".to_sym
   end
+
+  # "That symbol stuff will mess with your mind, man!"
+  # -- with apologies to the Total Recall remake
+  #
+  # Q: In the above, why the weird, symbol-like :"cats and dogs" syntax...before becoming a symbol? What can it all mean?
+  # A: This is a special method for creating symbols whose names contain spaces.
+  # :'Benedict Cumberbatch'
+
+
 
   def test_to_s_is_called_on_interpolated_symbols
     symbol = :cats
@@ -101,8 +114,10 @@ class AboutSymbols < EdgeCase::Koan
   end
 
   # It's important to realize that symbols are not "immutable
-  # strings", though they are immutable. None of the
+  # strings," though they are immutable. None of the
   # interesting string operations are available on symbols.
+  #
+  # So don't try to stick them together like a couple of low-rent HTML strings in your Javascript from 1998.
 
   def test_symbols_cannot_be_concatenated
     # Exceptions will be pondered further down the path
