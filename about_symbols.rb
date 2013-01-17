@@ -2,7 +2,7 @@ require File.expand_path(File.dirname(__FILE__) + '/edgecase')
 
 class AboutSymbols < EdgeCase::Koan
 
-  # So here's a symbol. Is it a Symbol? Yes.
+  # So here's a symbol. Is it a Symbol? Yes. Yes, sir, I do believe it is.
  
   def test_symbols_are_symbols
     symbol = :ruby
@@ -32,10 +32,9 @@ class AboutSymbols < EdgeCase::Koan
 
     # This may seem like the trippiest concept in all of Ruby, but it's simple:
     #
-    # A symbol is a symbol. Only one must exist in the universe.
+    # A symbol is like a single star in the firmament. Only one of each kind exists, even though many variables may point to it.
     #
-    # Symbols, like stars, are unique entities in the firmament. They are kept in the "symbol table,"
-    # which you can reach by going to Symbol.all_symbols
+    # The grand table of all symbols can be reached by visiting our friend Symbol.all_symbols
 
   end
 
@@ -53,6 +52,7 @@ class AboutSymbols < EdgeCase::Koan
   # against the string value rather than against symbols?
 
   # A: Because of something like the Observer Effect. By talking about that symbol, you create it.
+  # "If we start talking about it we'll be here all day, making diagrams with straws!" -- Bruce Willis in "Looper"
 
   in_ruby_version("mri") do
     RubyConstant = "What is the sound of one hand clapping?"
