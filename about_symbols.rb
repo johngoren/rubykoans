@@ -140,5 +140,6 @@ class AboutSymbols < EdgeCase::Koan
   # Q: Why is it not a good idea to dynamically create a lot of symbols?
   #
   # A: Conservation of memory. When you reserve RAM for a symbol, you don't get it back until the program ends.
+  # That's how immutable a symbol is.
   
 end
