@@ -109,6 +109,9 @@ class AboutBlocks < EdgeCase::Koan
   # ------------------------------------------------------------------
 
   # "Hi, know of a block you'd like to pass in? Send me a proc of it"
+  #
+  # What is a proc? A proc is "a block of code bound to a set of local variables...once bound,
+  # the code may be called in different contexts and still access those variables." -- ruby-doc.org
 
   def method_with_explicit_block(&block)
     block.call(10)
