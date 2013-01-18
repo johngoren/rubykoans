@@ -1,6 +1,9 @@
 require File.expand_path(File.dirname(__FILE__) + '/edgecase')
 
 class AboutBlocks < EdgeCase::Koan
+
+  # In which the strange "yield" command allows us to consider parameters we hadn't even thought of receiving
+
   def method_with_block
     result = yield
     result
