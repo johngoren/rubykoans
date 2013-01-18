@@ -112,6 +112,9 @@ class AboutBlocks < EdgeCase::Koan
   #
   # What is a proc? A proc is "a block of code bound to a set of local variables...once bound,
   # the code may be called in different contexts and still access those variables." -- ruby-doc.org
+  #
+  # Blocks don't always act like objects. Using a proc, tough, you can make your block act like one.
+
 
   def method_with_explicit_block(&block)
     block.call(10)
