@@ -2,7 +2,8 @@ require File.expand_path(File.dirname(__FILE__) + '/edgecase')
 
 class AboutBlocks < EdgeCase::Koan
 
-  # In which the strange "yield" command allows us to consider parameters we hadn't even thought of receiving
+  # In which the strange "yield" command allows us to consider parameters we hadn't even thought of receiving.
+  # This includes receiving Ruby Blocks: a piece of code that you drop right on them.
 
   def method_with_block
     result = yield
@@ -93,7 +94,8 @@ class AboutBlocks < EdgeCase::Koan
     assert_equal 11, add_one[10]
   end
 
-  #Holy cow this is interesting. A kind of mixin in which you pass in a reference to a method.
+  #Holy cow this is interesting. A kind of mixin in which you pass in a method.
+  #The &, or "unary operator," captures the block by turning it into something called a "proc."
 
   def test_stand_alone_blocks_can_be_passed_to_methods_expecting_blocks
     make_upper = lambda { |n| n.upcase }
@@ -101,10 +103,12 @@ class AboutBlocks < EdgeCase::Koan
     assert_equal "JIM", result
   end
 
-  # Got that? So the "yield Jim" method receives a reference to the "make everything uppercase" lambda.
+  # Got that? So the "yield Jim" method receives the "make everything uppercase" lambda.
   # When this is passed in, it changes the yield.
 
   # ------------------------------------------------------------------
+
+  # "Hi, know of a block you'd like to pass in? Send me a proc of it"
 
   def method_with_explicit_block(&block)
     block.call(10)
