@@ -54,6 +54,10 @@ class AboutBlocks < EdgeCase::Koan
 
   # ------------------------------------------------------------------
 
+  # Amazing. The function can determine whether you gave it a block or not. 
+  #
+  # The true test is whether "yield" will execute a block, as presented 
+
   def yield_tester
     if block_given?
       yield
@@ -62,6 +66,7 @@ class AboutBlocks < EdgeCase::Koan
     end
   end
 
+
   def test_methods_can_see_if_they_have_been_called_with_a_block
     assert_equal :with_block, yield_tester { :with_block }
     assert_equal :no_block, yield_tester
@@ -69,27 +74,35 @@ class AboutBlocks < EdgeCase::Koan
 
   # ------------------------------------------------------------------
 
+  # The stuff of a PHP programmer's nightmare. Not only does the method not know what parameters are coming in,
+  # we passed in parameters -- only to be like, at the last minute, 'oh hey but this variable you didn't expect has a different value'
+
   def test_block_can_affect_variables_in_the_code_where_they_are_created
     value = :initial_value
     method_with_block { value = :modified_in_a_block }
     assert_equal :modified_in_a_block, value
   end
 
+  # Lambdas are standalone methods without names, like Ryan Gosling's character in "Drive."
+
   def test_blocks_can_be_assigned_to_variables_and_called_explicitly
     add_one = lambda { |n| n + 1 }
     assert_equal 11, add_one.call(10)
 
-    # Alternative calling sequence
+    # Alternative calling sequence. Notice that "call" requires parenthesies. Otherwise you use brackets.
     assert_equal 11, add_one[10]
   end
 
-  #Holy cow this is interesting. A kind of mixin in which you pass in a reference.
+  #Holy cow this is interesting. A kind of mixin in which you pass in a reference to a method.
 
   def test_stand_alone_blocks_can_be_passed_to_methods_expecting_blocks
     make_upper = lambda { |n| n.upcase }
     result = method_with_block_arguments(&make_upper)
     assert_equal "JIM", result
   end
+
+  # Got that? So the "yield Jim" method receives a reference to the "make everything uppercase" lambda.
+  # When this is passed in, it changes the yield.
 
   # ------------------------------------------------------------------
 
