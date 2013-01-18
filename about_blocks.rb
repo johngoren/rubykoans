@@ -25,6 +25,8 @@ class AboutBlocks < EdgeCase::Koan
     yield("Jim")
   end
 
+  
+
   def test_blocks_can_take_arguments
     result = method_with_block_arguments do |argument|
       assert_equal argument, argument
@@ -40,9 +42,13 @@ class AboutBlocks < EdgeCase::Koan
     yield(:jelly)
   end
 
+  # << is the "shovel operator." It appends stuff to a string.
+  #
+  # In this example, we loop through the bountiful yield of 4 items. Our block finds 4 items, and shovels them into the growing "result"
+
   def test_methods_can_call_yield_many_times
     result = []
-    many_yields { |item| result << item }
+    many_yields { |item| result << item }                            
     assert_equal [:peanut, :butter, :and, :jelly], result
   end
 
