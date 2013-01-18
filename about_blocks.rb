@@ -3,7 +3,8 @@ require File.expand_path(File.dirname(__FILE__) + '/edgecase')
 class AboutBlocks < EdgeCase::Koan
 
   # In which the strange "yield" command allows us to consider parameters we hadn't even thought of receiving.
-  # This includes receiving Ruby Blocks: a piece of code that you drop right on them.
+  # This includes receiving Ruby Blocks, which are chunks of code you can just drop on someone's head -- in other words,
+  # lambda functions that can be passed in.
 
   def method_with_block
     result = yield
